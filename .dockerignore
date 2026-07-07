@@ -1,0 +1,5 @@
+prompts/
+spec.md
+Dockerfile
+.dockerignore
+.git/

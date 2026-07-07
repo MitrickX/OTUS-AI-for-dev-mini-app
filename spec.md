@@ -68,11 +68,6 @@ curl -v -X POST http://localhost:8080/answers \
   }'
 ```
 
-## AI tools
-1. Opencode
-2. Backend сгенерирован с помощью модели Big Pickle, потрачено 109.6K токенов
-3. Сессия выгружена в файл [session](session-ses_0c35.md)
-
 ## Frontend
 
 Индексная страница (`/`) — статический HTML, который загружает вопросы через API и отправляет ответы.
@@ -81,6 +76,33 @@ curl -v -X POST http://localhost:8080/answers \
 - `/static/js/app.js` — скрипты
 
 Статика вшита в бинарник через `//go:embed` (пакет `embed`), читается из памяти при запуске.
+
+## Docker
+
+Минималистичный образ на основе `scratch` (двухэтапная сборка).
+
+```dockerfile
+FROM golang:1.26-alpine AS build
+WORKDIR /app
+COPY go.mod go.sum ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -o /app/server ./cmd/server
+
+FROM scratch
+COPY --from=build /app/server /server
+EXPOSE 8080
+CMD ["/server"]
+```
+
+Сборка и запуск:
+
+```bash
+docker build -t mini-questionnaire .
+docker run -p 8080:8080 mini-questionnaire
+```
+
+Статика вшита в бинарник через `//go:embed`, дополнительные слои не нужны.
 
 ## Отладка
 

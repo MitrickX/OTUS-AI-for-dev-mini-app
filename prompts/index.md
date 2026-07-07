@@ -11,3 +11,5 @@
 9. [Отдача статики](static.md)
 10. [Spec validation 2](spec-validation-2.md)
 11. [Update spec 2](update-spec-2.md)
+12. [Docker](docker.md)
+13. [Spec validation 3](spec-validation-3.md)
