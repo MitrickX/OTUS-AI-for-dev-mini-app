@@ -7,3 +7,7 @@
 5. [Debug](debug.md)
 6. [Spec validation 1](spec-validation-1.md)
 7. [Update spec 1](update-spec-1.md)
+8. [Index file](index-file.md)
+9. [Отдача статики](static.md)
+10. [Spec validation 2](spec-validation-2.md)
+11. [Update spec 2](update-spec-2.md)
